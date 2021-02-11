@@ -1,1 +1,3 @@
 Axe and dagger sprite from https://quintino-pixels.itch.io/fantasy-weapons-pixel-art
+
+Spikes and player sprites from https://finalbossblues.itch.io/pixel-platformer-pack
