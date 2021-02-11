@@ -4,41 +4,50 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float timeSinceStart;
+
+    public float acceleration = 0.3f;
+    public float maxWalkSpeed = 2f;
+    
+    private bool facingLeft = false;
     
     private Animator anim;
     private Rigidbody2D rb;
+    private SpriteRenderer sp;
     // Start is called before the first frame update
     void Start()
-    {
-        timeSinceStart = 0;
-        
+    {        
         anim = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody2D> ();
-   
+        sp = GetComponent<SpriteRenderer> ();
    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         
+        float horizontal = Input.GetAxis("Horizontal");
+        float newHorizontalVelocity;
         
-        // Basic animation loop test
-        timeSinceStart++;
-        if (timeSinceStart > 60)
+        if (horizontal == 0)
+            newHorizontalVelocity = 0;
+        else if (horizontal < 0)
+            newHorizontalVelocity = Mathf.Max(maxWalkSpeed * -1, rb.velocity.x + horizontal * acceleration);
+        else
+            newHorizontalVelocity = Mathf.Min(maxWalkSpeed, rb.velocity.x + horizontal * acceleration);
+            
+        
+        if ((newHorizontalVelocity < 0) != facingLeft)
         {
-            anim.SetFloat("speed", 1);
+            flipSprite();
         }
         
-        if (timeSinceStart > 120)
-        {
-            anim.SetFloat("speed", 2);
-        }
-        
-        if (timeSinceStart > 180)
-        {
-            anim.SetFloat("speed", 0);
-            timeSinceStart = 0;
-        }
+        rb.velocity = new Vector2 (newHorizontalVelocity, rb.velocity.y);
+        anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
+    }
+    
+    void flipSprite()
+    {
+        facingLeft = !facingLeft;
+        sp.flipX = facingLeft;
     }
 }
