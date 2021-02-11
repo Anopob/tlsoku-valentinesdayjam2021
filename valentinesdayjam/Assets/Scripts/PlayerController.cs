@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     public float acceleration = 0.3f;
     public float maxWalkSpeed = 2f;
+    public float jumpSpeed = 2;
     
     private bool facingLeft = false;
     
@@ -38,16 +39,28 @@ public class PlayerController : MonoBehaviour
         
         if ((newHorizontalVelocity < 0) != facingLeft)
         {
-            flipSprite();
+            FlipSprite();
         }
         
         rb.velocity = new Vector2 (newHorizontalVelocity, rb.velocity.y);
         anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
+    
+        if (Input.GetButtonDown("Jump"))
+        {
+            PerformJump();
+        }
     }
     
-    void flipSprite()
+    void FlipSprite()
     {
         facingLeft = !facingLeft;
         sp.flipX = facingLeft;
     }
+    
+    void PerformJump()
+    {
+        anim.SetTrigger("jumped");
+        rb.velocity = new Vector2 (rb.velocity.x, jumpSpeed);
+    }
+    
 }
