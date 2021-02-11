@@ -7,10 +7,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public float acceleration = 0.3f;
-    public float maxWalkSpeed = 2f;
-    public float jumpSpeed = 2;
-    
+    public float acceleration;
+    public float maxWalkSpeed;
+    public float jumpSpeed;
+
     private bool facingLeft = false;
     private bool jumping = false;
 
