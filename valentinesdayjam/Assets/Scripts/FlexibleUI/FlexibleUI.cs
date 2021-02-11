@@ -16,10 +16,4 @@ public class FlexibleUI : MonoBehaviour
     {
         OnSkinUI();
     }
-
-    public virtual void Update()
-    {
-        if (Application.isEditor)
-            OnSkinUI();
-    }
 }
