@@ -1,0 +1,54 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MusicPlayer : MonoBehaviour
+{
+    [SerializeField]
+    private AudioClip _mainMenuTheme, _gameplayTheme, _buttonClickClip;
+    private static MusicPlayer _instance;
+    private static AudioSource _musicSource;
+    private static AudioSource _soundSource;
+
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            var aSources = this.GetComponents<AudioSource>();
+            _musicSource = aSources[0];
+            _soundSource = aSources[1];
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else
+        {
+            PlayMainMenuMusic();
+            Destroy(gameObject);
+        }
+    }
+
+    public void PlayMainMenuMusic()
+    {
+        PlayMusicIfNotAlready(_mainMenuTheme);
+    }
+
+    public void PlayGameplayMusic()
+    {
+        PlayMusicIfNotAlready(_gameplayTheme);
+    }
+
+    public void PlayButtonClickClip()
+    {
+        _soundSource.clip = _buttonClickClip;
+        _soundSource.Play();
+    }
+
+    private void PlayMusicIfNotAlready(AudioClip clip)
+    {
+        if (_musicSource.clip != clip)
+        {
+            _musicSource.clip = clip;
+            _musicSource.Play();
+        }
+    }
+}
