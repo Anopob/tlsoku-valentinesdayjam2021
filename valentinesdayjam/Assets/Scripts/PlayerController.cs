@@ -16,12 +16,13 @@ public class PlayerController : MonoBehaviour
 
     private bool facingLeft = false;
     private bool jumping = false;
+    private List<Collider2D> currentlyCringing = new List<Collider2D>();
+
 
     private Animator anim;
     private Rigidbody2D rb;
     private SpriteRenderer sp;
     private BoxCollider2D playerCollider;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -70,19 +71,32 @@ public class PlayerController : MonoBehaviour
         {
             if (enemy.CompareTag("Trap"))
             {
-                Debug.DrawLine(transform.position, enemy.transform.position);
-                float distance = (transform.position - enemy.transform.position).magnitude;
-                Vector2 direction = (transform.position - enemy.transform.position).normalized * (cringeMultiplier / ((Mathf.Sqrt(distance)) + 1f));
+                if (currentlyCringing.Contains(enemy))
+                {
+                    
+                }
+                else
+                {
+                    Debug.DrawLine(transform.position, enemy.transform.position);
+                    float distance = (transform.position - enemy.transform.position).magnitude * 8; //Unity distances are very small
+                    Debug.Log(distance);
+                    float gravity = cringeMultiplier / (Mathf.Pow(distance,2));
+                    Vector2 direction = (transform.position - enemy.transform.position).normalized * gravity;
 
-                if (rb.velocity.x > 0)
-                    rb.velocity = new Vector2(Math.Max(0, rb.velocity.x + direction.x), rb.velocity.y);
-                else if (rb.velocity.x < 0)
-                    rb.velocity = new Vector2(Math.Min(0, rb.velocity.x + direction.x), rb.velocity.y);
+                    //Vector2 swappedDirection = direction;//new Vector2(direction.y * gravity, direction.x * gravity);
 
-                if (rb.velocity.y > 0)
-                    rb.velocity = new Vector2(rb.velocity.x, Math.Max(0, rb.velocity.y + direction.y));
-                else if (rb.velocity.y < 0)
-                    rb.velocity = new Vector2(rb.velocity.x, Math.Min(0, rb.velocity.y + direction.y));
+                    if (rb.velocity.x > 0.01)
+                        rb.velocity = new Vector2(Math.Max(0, rb.velocity.x + direction.x), rb.velocity.y);
+                    else if (rb.velocity.x < 0.01)
+                        rb.velocity = new Vector2(Math.Min(0, rb.velocity.x + direction.x), rb.velocity.y);
+
+                    if (rb.velocity.y > 0.01)
+                        rb.velocity = new Vector2(rb.velocity.x, Math.Max(0, rb.velocity.y + direction.y));
+                    else if (rb.velocity.y < 0.01)
+                        rb.velocity = new Vector2(rb.velocity.x, Math.Min(0, rb.velocity.y + direction.y));
+                    
+                    //currentlyCringing.Add(enemy);
+                }
             }
         }
     }
