@@ -34,8 +34,5 @@ public class Axe : MonoBehaviour
 
         Quaternion zrot = Quaternion.Euler(0.0f, 0.0f, (rotationSpeed * (clockwise ? -1 : 1)));
         trans.localRotation *= zrot;
-
-        Debug.Log(rotationSpeed * (clockwise ? -1 : 1));
-        Debug.Log(trans.rotation.eulerAngles);
     }
 }

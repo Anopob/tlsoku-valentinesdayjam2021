@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float maxWalkSpeed;
     public float jumpSpeed;
     public float cringeMultiplier;
-
+    public float characterFriction;
 
     private bool facingLeft = false;
     private bool jumping = false;
@@ -76,6 +76,16 @@ public class PlayerController : MonoBehaviour
         //else
         //    horizontalAcceleration = Vector2.zero;
         
+        // Horizontal Friction
+        float frictionToApply = Mathf.Min(Mathf.Abs(velocity.x), characterFriction) * (velocity.x > 0 ? -1 : 1); // Friction in opposite direction of movement
+        
+        if (horizontalAcceleration.x != 0) //Only apply friction when there is no player controlled movement
+            frictionToApply = 0;
+        
+        
+
+        Vector2 frictionAcceleration = new Vector2(frictionToApply, 0);
+        
         // Gravity Acceleration
         Vector2 gravityAcceleration = new Vector2(0,-0.2f);
        
@@ -115,12 +125,17 @@ public class PlayerController : MonoBehaviour
         }
 
         // Apply acceleration to velocity
-        velocity = velocity + horizontalAcceleration + gravityAcceleration + cringeAcceleration;
+        
+        
+        velocity = velocity + horizontalAcceleration + frictionAcceleration + gravityAcceleration + cringeAcceleration;
         // temp cap x
         if (velocity.x > 0)
             velocity = new Vector2(Math.Min(velocity.x, maxWalkSpeed), velocity.y);
         else if (velocity.x < 0)
             velocity = new Vector2(Math.Max(velocity.x, -maxWalkSpeed), velocity.y);
+
+        Debug.Log("velocity " + velocity.x + " friction " + frictionToApply);
+
 
         // Apply velocity to position
         //transform.position = new Vector3(transform.position.x + velocity.x, transform.position.y + velocity.y, transform.position.z);
