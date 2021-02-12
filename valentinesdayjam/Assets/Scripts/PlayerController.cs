@@ -85,14 +85,14 @@ public class PlayerController : MonoBehaviour
 
                     //Vector2 swappedDirection = direction;//new Vector2(direction.y * gravity, direction.x * gravity);
 
-                    if (rb.velocity.x > 0.01)
+                    if (rb.velocity.x > 0)
                         rb.velocity = new Vector2(Math.Max(0, rb.velocity.x + direction.x), rb.velocity.y);
-                    else if (rb.velocity.x < 0.01)
+                    else if (rb.velocity.x < 0)
                         rb.velocity = new Vector2(Math.Min(0, rb.velocity.x + direction.x), rb.velocity.y);
 
-                    if (rb.velocity.y > 0.01)
+                    if (rb.velocity.y > 0)
                         rb.velocity = new Vector2(rb.velocity.x, Math.Max(0, rb.velocity.y + direction.y));
-                    else if (rb.velocity.y < 0.01)
+                    else if (rb.velocity.y < 0)
                         rb.velocity = new Vector2(rb.velocity.x, Math.Min(0, rb.velocity.y + direction.y));
                     
                     //currentlyCringing.Add(enemy);
