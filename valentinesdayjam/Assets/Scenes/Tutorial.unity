@@ -141,12 +141,12 @@ PrefabInstance:
     - target: {fileID: 7773638853241998933, guid: fbc62a160f84de7488313ca3133ee66e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.25
+      value: -8.22
       objectReference: {fileID: 0}
     - target: {fileID: 7773638853241998933, guid: fbc62a160f84de7488313ca3133ee66e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.35
+      value: -2.8
       objectReference: {fileID: 0}
     - target: {fileID: 7773638853241998933, guid: fbc62a160f84de7488313ca3133ee66e,
         type: 3}
@@ -543,7 +543,17 @@ PrefabInstance:
     - target: {fileID: 3890470930602574441, guid: e055bc99053e24844adc917e28ccff21,
         type: 3}
       propertyPath: m_GravityScale
-      value: 0.6
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890470930602574441, guid: e055bc99053e24844adc917e28ccff21,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890470930602574441, guid: e055bc99053e24844adc917e28ccff21,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3890470930602574445, guid: e055bc99053e24844adc917e28ccff21,
         type: 3}
@@ -553,12 +563,12 @@ PrefabInstance:
     - target: {fileID: 3890470930602574446, guid: e055bc99053e24844adc917e28ccff21,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.86
+      value: -5.14
       objectReference: {fileID: 0}
     - target: {fileID: 3890470930602574446, guid: e055bc99053e24844adc917e28ccff21,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.51
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 3890470930602574446, guid: e055bc99053e24844adc917e28ccff21,
         type: 3}
@@ -608,12 +618,12 @@ PrefabInstance:
     - target: {fileID: 6799972852242499380, guid: e055bc99053e24844adc917e28ccff21,
         type: 3}
       propertyPath: m_Offset.x
-      value: 0.0019212477
+      value: 0.002388589
       objectReference: {fileID: 0}
     - target: {fileID: 6799972852242499380, guid: e055bc99053e24844adc917e28ccff21,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.2048575
+      value: 0.19831084
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e055bc99053e24844adc917e28ccff21, type: 3}

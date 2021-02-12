@@ -23,7 +23,7 @@ public class Axe : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {        
         Vector3 currentEulerAngles = trans.rotation.eulerAngles;  
         

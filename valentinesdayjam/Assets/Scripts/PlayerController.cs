@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool facingLeft = false;
     private bool jumping = false;
     private List<Collider2D> currentlyCringing = new List<Collider2D>();
-
+    private Vector2 velocity = new Vector2(0,0);
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -37,7 +37,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && !jumping)
         {
             PerformJumpingAnimations();
-            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            Debug.Log("jumped");
+            //rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            velocity = new Vector2(velocity.x, jumpSpeed);
         }
 
         float horizontal = Input.GetAxis("Horizontal");
@@ -61,6 +63,61 @@ public class PlayerController : MonoBehaviour
     private Vector2 _movementForce;
 
     void FixedUpdate()
+    {
+      //  OldFixedUpdate();
+
+        
+        
+        // Horizontal Acceleration
+        
+        // Gravity Acceleration
+        Vector2 gravityAcceleration = new Vector2(0,-0.2f);
+       
+        // Cringe Acceleration
+        Vector2 cringeAcceleration = new Vector2(0,0);
+
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, CRINGE_DISTANCE);
+        foreach (Collider2D enemy in enemies)
+        {
+            if (enemy.CompareTag("Trap"))
+            {
+                if (currentlyCringing.Contains(enemy))
+                {
+                    
+                }
+                else
+                {
+                    Debug.DrawLine(transform.position, enemy.bounds.center);
+                    float distance = (transform.position - enemy.bounds.center).magnitude * 8; //Unity distances are very small
+                    float cringeGravity = cringeMultiplier / (Mathf.Pow(distance,2));
+                    Vector2 direction = (transform.position - enemy.bounds.center).normalized * cringeGravity;
+                    cringeAcceleration += direction;
+                    /*
+                    if (rb.velocity.x > 0)
+                        rb.velocity = new Vector2(Math.Max(0, rb.velocity.x + direction.x), rb.velocity.y);
+                    else if (rb.velocity.x < 0)
+                        rb.velocity = new Vector2(Math.Min(0, rb.velocity.x + direction.x), rb.velocity.y);
+
+                    if (rb.velocity.y > 0)
+                        rb.velocity = new Vector2(rb.velocity.x, Math.Max(0, rb.velocity.y + direction.y));
+                    else if (rb.velocity.y < 0)
+                        rb.velocity = new Vector2(rb.velocity.x, Math.Min(0, rb.velocity.y + direction.y));
+                    */
+                    //currentlyCringing.Add(enemy);
+                }
+            }      
+        }
+        
+        // Apply acceleration to velocity
+        velocity = velocity + gravityAcceleration + cringeAcceleration;
+
+        // Apply velocity to position
+        //transform.position = new Vector3(transform.position.x + velocity.x, transform.position.y + velocity.y, transform.position.z);
+        rb.velocity = velocity;
+    }
+
+        
+    void OldFixedUpdate()
     {
         rb.velocity = _movementForce;
 
@@ -95,10 +152,9 @@ public class PlayerController : MonoBehaviour
                     
                     //currentlyCringing.Add(enemy);
                 }
-            }
+            }      
         }
     }
-
     void FlipSprite()
     {
         facingLeft = !facingLeft;
