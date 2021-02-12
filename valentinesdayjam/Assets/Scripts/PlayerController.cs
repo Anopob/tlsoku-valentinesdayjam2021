@@ -37,22 +37,6 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
         }
 
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, CRINGE_DISTANCE);
-        foreach (Collider2D enemy in enemies)
-        {
-            if (enemy.CompareTag("Enemy"))
-            {
-                Debug.DrawLine(transform.position, enemy.transform.position);
-                Vector2 direction = (transform.position - enemy.transform.position);
-                rb.velocity = new Vector2(rb.velocity.x * -direction.x, rb.velocity.y * -direction.y);
-            }
-        }
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-
         float horizontal = Input.GetAxis("Horizontal");
         float newHorizontalVelocity;
 
@@ -70,6 +54,21 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = new Vector2(newHorizontalVelocity, rb.velocity.y);
         anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
+    }
+
+    void FixedUpdate()
+    {
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, CRINGE_DISTANCE);
+        foreach (Collider2D enemy in enemies)
+        {
+            if (enemy.CompareTag("Trap"))
+            {
+                Debug.DrawLine(transform.position, enemy.transform.position);
+                Vector2 direction = (transform.position - enemy.transform.position).normalized;
+                rb.AddForce(-direction);
+                //rb.velocity = new Vector2(rb.velocity.x + direction.x * Time.deltaTime, rb.velocity.y + direction.y * Time.deltaTime);
+            }
+        }
     }
 
     void FlipSprite()
