@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         if (horizontal == 0)
             newHorizontalVelocity = 0;
         else //Instead of capping to max speed (ruins trap boosts), just don't add the input part above max speed
-            newHorizontalVelocity = rb.velocity.x + (Mathf.Abs(rb.velocity.x) > maxWalkSpeed ? 0 : horizontal * acceleration);
+            newHorizontalVelocity = horizontal;//rb.velocity.x + (Mathf.Abs(rb.velocity.x) > maxWalkSpeed ? 0 : horizontal * acceleration);
 
         if (newHorizontalVelocity != 0 &&
             (newHorizontalVelocity < 0) != facingLeft)
@@ -64,11 +64,17 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-      //  OldFixedUpdate();
+        //  OldFixedUpdate();
 
-        
-        
+
+
         // Horizontal Acceleration
+        Vector2 horizontalAcceleration;
+        horizontalAcceleration = new Vector2(_movementForce.x * acceleration, 0);
+        //if (Math.Abs(rb.velocity.x) < maxWalkSpeed)
+        //    horizontalAcceleration = new Vector2(_movementForce.x, 0);
+        //else
+        //    horizontalAcceleration = Vector2.zero;
         
         // Gravity Acceleration
         Vector2 gravityAcceleration = new Vector2(0,-0.2f);
@@ -107,9 +113,14 @@ public class PlayerController : MonoBehaviour
                 }
             }      
         }
-        
+
         // Apply acceleration to velocity
-        velocity = velocity + gravityAcceleration + cringeAcceleration;
+        velocity = velocity + horizontalAcceleration + gravityAcceleration + cringeAcceleration;
+        // temp cap x
+        if (velocity.x > 0)
+            velocity = new Vector2(Math.Min(velocity.x, maxWalkSpeed), velocity.y);
+        else if (velocity.x < 0)
+            velocity = new Vector2(Math.Max(velocity.x, -maxWalkSpeed), velocity.y);
 
         // Apply velocity to position
         //transform.position = new Vector3(transform.position.x + velocity.x, transform.position.y + velocity.y, transform.position.z);
