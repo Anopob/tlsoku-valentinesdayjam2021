@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private const float CRINGE_DISTANCE = 2f;
-
+    private const float ABSOLUTE_SPEED_CAP = 6f;
     public float acceleration;
     public float maxWalkSpeed;
     public float jumpSpeed;
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
         Vector2 frictionAcceleration = new Vector2(frictionToApply, 0);
         
         // Gravity Acceleration
-        Vector2 gravityAcceleration = new Vector2(0,-0.2f);
+        Vector2 gravityAcceleration = new Vector2(0, (jumping ? -0.2f : 0));
        
         // Cringe Acceleration
         Vector2 cringeAcceleration = new Vector2(0,0);
@@ -136,13 +136,26 @@ public class PlayerController : MonoBehaviour
         
         
         velocity = velocity + horizontalAcceleration + frictionAcceleration + gravityAcceleration + cringeAcceleration;
-        // temp cap x
-        /*
+        
+        // Cap X and Y to prevent phasing through walls
+        float cappedX = 0;
+        float cappedY = 0;
+        
         if (velocity.x > 0)
-            velocity = new Vector2(Math.Min(velocity.x, maxWalkSpeed), velocity.y);
+            cappedX = (Math.Min(velocity.x, ABSOLUTE_SPEED_CAP));
         else if (velocity.x < 0)
-            velocity = new Vector2(Math.Max(velocity.x, -maxWalkSpeed), velocity.y);
-*/
+            cappedX = (Math.Max(velocity.x, -ABSOLUTE_SPEED_CAP));
+
+        if (velocity.y > 0)
+            cappedY = (Math.Min(velocity.y, ABSOLUTE_SPEED_CAP));
+        else if (velocity.y < 0)
+            cappedY = (Math.Max(velocity.y, -ABSOLUTE_SPEED_CAP));
+
+        if (!jumping)
+            cappedY = 0;
+
+        velocity = new Vector2(cappedX, cappedY);
+
         Debug.Log("velocity " + velocity.x + " friction " + frictionToApply);
 
 
@@ -151,45 +164,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = velocity;
     }
 
-        
-    void OldFixedUpdate()
-    {
-        rb.velocity = _movementForce;
-
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, CRINGE_DISTANCE);
-        foreach (Collider2D enemy in enemies)
-        {
-            if (enemy.CompareTag("Trap"))
-            {
-                if (currentlyCringing.Contains(enemy))
-                {
-                    
-                }
-                else
-                {
-                    Debug.DrawLine(transform.position, enemy.bounds.center);
-                    float distance = (transform.position - enemy.bounds.center).magnitude * 8; //Unity distances are very small
-                    Debug.Log(distance);
-                    float gravity = cringeMultiplier / (Mathf.Pow(distance,2));
-                    Vector2 direction = (transform.position - enemy.bounds.center).normalized * gravity;
-
-                    //Vector2 swappedDirection = direction;//new Vector2(direction.y * gravity, direction.x * gravity);
-
-                    if (rb.velocity.x > 0)
-                        rb.velocity = new Vector2(Math.Max(0, rb.velocity.x + direction.x), rb.velocity.y);
-                    else if (rb.velocity.x < 0)
-                        rb.velocity = new Vector2(Math.Min(0, rb.velocity.x + direction.x), rb.velocity.y);
-
-                    if (rb.velocity.y > 0)
-                        rb.velocity = new Vector2(rb.velocity.x, Math.Max(0, rb.velocity.y + direction.y));
-                    else if (rb.velocity.y < 0)
-                        rb.velocity = new Vector2(rb.velocity.x, Math.Min(0, rb.velocity.y + direction.y));
-                    
-                    //currentlyCringing.Add(enemy);
-                }
-            }      
-        }
-    }
     void FlipSprite()
     {
         facingLeft = !facingLeft;
