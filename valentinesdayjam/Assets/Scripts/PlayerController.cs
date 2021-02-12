@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         facingLeft = false;
         jumping = false;
         velocity = new Vector2(0,0);
-        
+        sp.flipX = facingLeft;
     }
 
     private void Update()
