@@ -14,10 +14,11 @@ public class PlayerController : MonoBehaviour
     public float cringeMultiplier;
     public float characterFriction;
 
-    private bool facingLeft = false;
-    private bool jumping = false;
+    private bool facingLeft;
+    private bool jumping;
     private List<Collider2D> currentlyCringing = new List<Collider2D>();
-    private Vector2 velocity = new Vector2(0,0);
+    private Vector2 velocity;
+    private Vector3 startingPosition;
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -30,6 +31,18 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sp = GetComponent<SpriteRenderer>();
         playerCollider = Array.Find(GetComponents<BoxCollider2D>(), b => !b.isTrigger);
+        startingPosition = transform.position;
+        Restart();
+    }
+    
+    // Sets up some initial variables, can be used after death
+    void Restart()
+    {
+        transform.position = startingPosition;
+        facingLeft = false;
+        jumping = false;
+        velocity = new Vector2(0,0);
+        
     }
 
     private void Update()
@@ -156,12 +169,15 @@ public class PlayerController : MonoBehaviour
 
         velocity = new Vector2(cappedX, cappedY);
 
-        Debug.Log("velocity " + velocity.x + " friction " + frictionToApply);
+        //Debug.Log("velocity " + velocity.x + " friction " + frictionToApply);
 
+        // Failsafe for falling off the bottom of the screen
+        if (transform.position.y < -12)
+            KillPlayer();
 
         // Apply velocity to position
         //transform.position = new Vector3(transform.position.x + velocity.x, transform.position.y + velocity.y, transform.position.z);
-        rb.velocity = velocity;
+        rb.velocity = velocity;        
     }
 
     void FlipSprite()
@@ -195,5 +211,19 @@ public class PlayerController : MonoBehaviour
     {
         if (other != playerCollider)
             PerformJumpingAnimations();
+    }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Trap"))
+            KillPlayer();
+        //Door collision
+//        level.Restart();
+    }
+    
+    void KillPlayer(){
+        Debug.Log("Player is dead!");
+        // Play audio/visual effect
+        Restart();
     }
 }
