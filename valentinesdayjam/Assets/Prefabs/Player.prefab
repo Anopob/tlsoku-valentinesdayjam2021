@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3890470930602574440}
   - component: {fileID: 1668486113}
   - component: {fileID: 6799972852242499380}
-  - component: {fileID: 1214828944}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -139,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0570ef5033bfb4a82f3ed9211390db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 0.3
+  acceleration: 100
   maxWalkSpeed: 2
   jumpSpeed: 5
 --- !u!61 &1668486113
@@ -194,19 +193,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.20951143, y: 0.061549127}
   m_EdgeRadius: 0
---- !u!58 &1214828944
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3890470930602574445}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2

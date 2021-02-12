@@ -53,12 +53,16 @@ public class PlayerController : MonoBehaviour
             FlipSprite();
         }
 
-        rb.velocity = new Vector2(newHorizontalVelocity, rb.velocity.y);
+        _movementForce = new Vector2(newHorizontalVelocity, rb.velocity.y);
         anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
     }
 
+    private Vector2 _movementForce;
+
     void FixedUpdate()
     {
+        rb.velocity = _movementForce;
+
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, CRINGE_DISTANCE);
         foreach (Collider2D enemy in enemies)
         {
@@ -66,8 +70,16 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.DrawLine(transform.position, enemy.transform.position);
                 Vector2 direction = (transform.position - enemy.transform.position).normalized;
-                rb.AddForce(-direction);
-                //rb.velocity = new Vector2(rb.velocity.x + direction.x * Time.deltaTime, rb.velocity.y + direction.y * Time.deltaTime);
+
+                if (rb.velocity.x > 0)
+                    rb.velocity = new Vector2(Math.Max(0, rb.velocity.x + direction.x), rb.velocity.y);
+                else if (rb.velocity.x < 0)
+                    rb.velocity = new Vector2(Math.Min(0, rb.velocity.x + direction.x), rb.velocity.y);
+
+                if (rb.velocity.y > 0)
+                    rb.velocity = new Vector2(rb.velocity.x, Math.Max(0, rb.velocity.y + direction.y));
+                else if (rb.velocity.y < 0)
+                    rb.velocity = new Vector2(rb.velocity.x, Math.Min(0, rb.velocity.y + direction.y));
             }
         }
     }
