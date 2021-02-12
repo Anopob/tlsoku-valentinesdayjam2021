@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private const float CRINGE_DISTANCE = 2f;
 
     public float acceleration;
     public float maxWalkSpeed;
@@ -34,6 +35,17 @@ public class PlayerController : MonoBehaviour
         {
             PerformJumpingAnimations();
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+        }
+
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, CRINGE_DISTANCE);
+        foreach (Collider2D enemy in enemies)
+        {
+            if (enemy.CompareTag("Enemy"))
+            {
+                Debug.DrawLine(transform.position, enemy.transform.position);
+                Vector2 direction = (transform.position - enemy.transform.position);
+                rb.velocity = new Vector2(rb.velocity.x * -direction.x, rb.velocity.y * -direction.y);
+            }
         }
     }
 
@@ -82,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log(other);
+        //Debug.Log(other);
         if (other != playerCollider)
             PerformLandingAnimations();
     }
