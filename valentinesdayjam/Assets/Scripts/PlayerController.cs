@@ -45,10 +45,8 @@ public class PlayerController : MonoBehaviour
 
         if (horizontal == 0)
             newHorizontalVelocity = 0;
-        else if (horizontal < 0)
-            newHorizontalVelocity = Mathf.Max(maxWalkSpeed * -1, rb.velocity.x + horizontal * acceleration);
-        else
-            newHorizontalVelocity = Mathf.Min(maxWalkSpeed, rb.velocity.x + horizontal * acceleration);
+        else //Instead of capping to max speed (ruins trap boosts), just don't add the input part above max speed
+            newHorizontalVelocity = rb.velocity.x + (Mathf.Abs(rb.velocity.x) > maxWalkSpeed ? 0 : horizontal * acceleration);
 
         if (newHorizontalVelocity != 0 &&
             (newHorizontalVelocity < 0) != facingLeft)
