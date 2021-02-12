@@ -540,6 +540,11 @@ PrefabInstance:
       propertyPath: cringeMultiplier
       value: 24
       objectReference: {fileID: 0}
+    - target: {fileID: 3890470930602574441, guid: e055bc99053e24844adc917e28ccff21,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3890470930602574445, guid: e055bc99053e24844adc917e28ccff21,
         type: 3}
       propertyPath: m_Name

@@ -75,11 +75,11 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.DrawLine(transform.position, enemy.transform.position);
-                    float distance = (transform.position - enemy.transform.position).magnitude * 8; //Unity distances are very small
+                    Debug.DrawLine(transform.position, enemy.bounds.center);
+                    float distance = (transform.position - enemy.bounds.center).magnitude * 8; //Unity distances are very small
                     Debug.Log(distance);
                     float gravity = cringeMultiplier / (Mathf.Pow(distance,2));
-                    Vector2 direction = (transform.position - enemy.transform.position).normalized * gravity;
+                    Vector2 direction = (transform.position - enemy.bounds.center).normalized * gravity;
 
                     //Vector2 swappedDirection = direction;//new Vector2(direction.y * gravity, direction.x * gravity);
 
