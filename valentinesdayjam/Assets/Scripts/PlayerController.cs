@@ -68,9 +68,16 @@ public class PlayerController : MonoBehaviour
 
 
 
-        // Horizontal Acceleration
-        Vector2 horizontalAcceleration;
-        horizontalAcceleration = new Vector2(_movementForce.x * acceleration, 0);
+        // Horizontal Acceleration.  Caused by player's input.  Set to 0 if maxWalkSpeed is already reached in that direction.
+        Vector2 horizontalAcceleration; 
+        float horizontalToApply = _movementForce.x * acceleration;
+        
+        // When acceleration is in the same direction as already capped velocity
+        if (Math.Abs(velocity.x) > maxWalkSpeed && (velocity.x * horizontalToApply > 0)) 
+            horizontalToApply = 0;
+
+        horizontalAcceleration = new Vector2(horizontalToApply, 0);
+
         //if (Math.Abs(rb.velocity.x) < maxWalkSpeed)
         //    horizontalAcceleration = new Vector2(_movementForce.x, 0);
         //else
@@ -79,9 +86,10 @@ public class PlayerController : MonoBehaviour
         // Horizontal Friction
         float frictionToApply = Mathf.Min(Mathf.Abs(velocity.x), characterFriction) * (velocity.x > 0 ? -1 : 1); // Friction in opposite direction of movement
         
-        if (horizontalAcceleration.x != 0) //Only apply friction when there is no player controlled movement
+        if (horizontalAcceleration.x != 0 || jumping) //Only apply friction when there is no player controlled movement on the ground
             frictionToApply = 0;
-        
+        if (Mathf.Abs(velocity.x) < 0.01)
+            frictionToApply = 0;
         
 
         Vector2 frictionAcceleration = new Vector2(frictionToApply, 0);
@@ -104,7 +112,7 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     Debug.DrawLine(transform.position, enemy.bounds.center);
-                    float distance = (transform.position - enemy.bounds.center).magnitude * 8; //Unity distances are very small
+                    float distance = (transform.position - enemy.bounds.center).magnitude * 6; //Unity distances are very small
                     float cringeGravity = cringeMultiplier / (Mathf.Pow(distance,2));
                     Vector2 direction = (transform.position - enemy.bounds.center).normalized * cringeGravity;
                     cringeAcceleration += direction;
@@ -129,11 +137,12 @@ public class PlayerController : MonoBehaviour
         
         velocity = velocity + horizontalAcceleration + frictionAcceleration + gravityAcceleration + cringeAcceleration;
         // temp cap x
+        /*
         if (velocity.x > 0)
             velocity = new Vector2(Math.Min(velocity.x, maxWalkSpeed), velocity.y);
         else if (velocity.x < 0)
             velocity = new Vector2(Math.Max(velocity.x, -maxWalkSpeed), velocity.y);
-
+*/
         Debug.Log("velocity " + velocity.x + " friction " + frictionToApply);
 
 
