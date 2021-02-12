@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float acceleration;
     public float maxWalkSpeed;
     public float jumpSpeed;
+    public float cringeMultiplier;
+
 
     private bool facingLeft = false;
     private bool jumping = false;
@@ -69,7 +71,8 @@ public class PlayerController : MonoBehaviour
             if (enemy.CompareTag("Trap"))
             {
                 Debug.DrawLine(transform.position, enemy.transform.position);
-                Vector2 direction = (transform.position - enemy.transform.position).normalized;
+                float distance = (transform.position - enemy.transform.position).magnitude;
+                Vector2 direction = (transform.position - enemy.transform.position).normalized * (cringeMultiplier / ((Mathf.Sqrt(distance)) + 1f));
 
                 if (rb.velocity.x > 0)
                     rb.velocity = new Vector2(Math.Max(0, rb.velocity.x + direction.x), rb.velocity.y);

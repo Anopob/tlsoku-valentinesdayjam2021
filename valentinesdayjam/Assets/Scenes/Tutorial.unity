@@ -535,6 +535,11 @@ PrefabInstance:
       propertyPath: acceleration
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 3890470930602574440, guid: e055bc99053e24844adc917e28ccff21,
+        type: 3}
+      propertyPath: cringeMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3890470930602574445, guid: e055bc99053e24844adc917e28ccff21,
         type: 3}
       propertyPath: m_Name
@@ -594,6 +599,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799972852242499380, guid: e055bc99053e24844adc917e28ccff21,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0019212477
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799972852242499380, guid: e055bc99053e24844adc917e28ccff21,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.2048575
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e055bc99053e24844adc917e28ccff21, type: 3}
