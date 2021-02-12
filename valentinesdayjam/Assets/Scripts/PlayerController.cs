@@ -47,7 +47,8 @@ public class PlayerController : MonoBehaviour
         else
             newHorizontalVelocity = Mathf.Min(maxWalkSpeed, rb.velocity.x + horizontal * acceleration);
 
-        if ((newHorizontalVelocity < 0) != facingLeft)
+        if (newHorizontalVelocity != 0 &&
+            (newHorizontalVelocity < 0) != facingLeft)
         {
             FlipSprite();
         }
