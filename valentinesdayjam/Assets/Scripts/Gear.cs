@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Gear : MonoBehaviour
 {
-    private const float GEAR_SPEED = 4f;
-
+    public float GearSpeed;
     public Transform[] Waypoints;
     private int _waypointIndex;
 
@@ -20,8 +19,9 @@ public class Gear : MonoBehaviour
 
     private void Update()
     {
-        float step = GEAR_SPEED * Time.deltaTime;
+        float step = GearSpeed * Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, Waypoints[_waypointIndex].position, step);
+        transform.Rotate(0,0,1);
 
         if ((transform.position - Waypoints[_waypointIndex].position).magnitude <= 0.2f)
         {
