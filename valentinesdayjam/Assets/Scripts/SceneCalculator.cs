@@ -41,21 +41,26 @@ namespace Assets.Scripts
         public void StartNewGame()
         {
             _level = 0;
-            ClickAsync("Tutorial");
+            GoToLevelNumber(_level);
+        }
+
+        public void GoToLevelNumber(int index)
+        {
+            if (LevelNumberToName.ContainsKey(index))
+                ClickAsync(LevelNumberToName[index]);
+            else
+                Debug.Log("HEY NO LEVEL : " + index);
         }
 
         public void GoToNextLevel()
         {
             _level++;
-            if (LevelNumberToName.ContainsKey(_level))
-                ClickAsync(LevelNumberToName[_level]);
-            else
-                Debug.Log("HEY NO LEVEL : " + _level);
+            GoToLevelNumber(_level);
         }
 
         public void GoToLevelSelect()
         {
-            Debug.Log("LEVEL SELECT!!");
+            ClickAsync("LevelSelect");
         }
 
         public void GoToMainMenu()
