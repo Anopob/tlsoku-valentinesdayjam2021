@@ -40,22 +40,25 @@ namespace Assets.Scripts
 
         public void StartNewGame()
         {
-            _level = 0;
-            GoToLevelNumber(_level);
+            GoToLevelNumber(0);
+        }
+
+        public void GoToNextLevel()
+        {
+            GoToLevelNumber(_level + 1);
         }
 
         public void GoToLevelNumber(int index)
         {
             if (LevelNumberToName.ContainsKey(index))
+            {
+                _level = index;
                 ClickAsync(LevelNumberToName[index]);
+            }
             else
-                Debug.Log("HEY NO LEVEL : " + index);
-        }
-
-        public void GoToNextLevel()
-        {
-            _level++;
-            GoToLevelNumber(_level);
+            {
+                Debug.Log("HEY NO LEVEL : " + index + ", Returning to MainMenu");
+            }
         }
 
         public void GoToLevelSelect()
