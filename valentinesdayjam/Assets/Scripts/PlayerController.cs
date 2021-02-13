@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
         Vector2 frictionAcceleration = new Vector2(frictionToApply, 0);
         
         // Gravity Acceleration
-        Vector2 gravityAcceleration = new Vector2(0, (jumping ? -0.2f : 0));
+        Vector2 gravityAcceleration = new Vector2(0, -0.2f);
        
         // Cringe Acceleration
         Vector2 cringeAcceleration = new Vector2(0,0);
@@ -163,9 +163,6 @@ public class PlayerController : MonoBehaviour
             cappedY = (Math.Min(velocity.y, ABSOLUTE_SPEED_CAP));
         else if (velocity.y < 0)
             cappedY = (Math.Max(velocity.y, -ABSOLUTE_SPEED_CAP));
-
-        if (!jumping)
-            cappedY = 0;
 
         velocity = new Vector2(cappedX, cappedY);
 
