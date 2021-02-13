@@ -32,9 +32,10 @@ namespace Assets.Scripts
         private void Start()
         {
             LevelNumberToName.Add(0, "Tutorial");
-            LevelNumberToName.Add(1, "Level1");
-            LevelNumberToName.Add(2, "Level2");
-            LevelNumberToName.Add(3, "Level3");
+            LevelNumberToName.Add(1, "neillevel2");
+            LevelNumberToName.Add(2, "Level1");
+            LevelNumberToName.Add(3, "neillevel1");
+            LevelNumberToName.Add(4, "neillevel3");
         }
 
         public void StartNewGame()
@@ -46,7 +47,10 @@ namespace Assets.Scripts
         public void GoToNextLevel()
         {
             _level++;
-            ClickAsync(LevelNumberToName[_level]);
+            if (LevelNumberToName.ContainsKey(_level))
+                ClickAsync(LevelNumberToName[_level]);
+            else
+                Debug.Log("HEY NO LEVEL : " + _level);
         }
 
         public void GoToLevelSelect()
