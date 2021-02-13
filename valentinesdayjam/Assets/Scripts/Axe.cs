@@ -12,6 +12,9 @@ public class Axe : MonoBehaviour
     private float startAngle;
     private float endAngle;
 
+    private int totalRotations;
+    private int rotations = 0;
+
     private Transform trans;
     // Start is called before the first frame update
     void Start()
@@ -20,19 +23,24 @@ public class Axe : MonoBehaviour
         trans = GetComponent<Transform>();
         startAngle = trans.rotation.eulerAngles.z;
         endAngle = startAngle + rotationArc;
+        Debug.Log("Start Angle: " + startAngle + "End Angle: " + endAngle);
+        
+        totalRotations = (int)(rotationArc / rotationSpeed); 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 currentEulerAngles = trans.rotation.eulerAngles;
-
-        if (currentEulerAngles.z > endAngle)
-            clockwise = !initialClockwise;
-        if (currentEulerAngles.z < startAngle)
-            clockwise = initialClockwise;
-
+        rotations++;
+        
+        if (rotations >= totalRotations)
+        {
+            clockwise = !clockwise;
+            rotations = 0;
+        }
+     
         Quaternion zrot = Quaternion.Euler(0.0f, 0.0f, (rotationSpeed * (clockwise ? -1 : 1)));
         trans.localRotation *= zrot;
+//        Debug.Log(currentEulerAngles.z);
     }
 }
