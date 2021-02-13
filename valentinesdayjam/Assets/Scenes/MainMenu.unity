@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 516250303}
   - component: {fileID: 516250302}
   - component: {fileID: 516250305}
+  - component: {fileID: 516250306}
   m_Layer: 5
   m_Name: New Game Button
   m_TagString: Untagged
@@ -205,7 +206,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2822715533251884519}
+      - m_Target: {fileID: 516250306}
         m_MethodName: StartNewGame
         m_Mode: 1
         m_Arguments:
@@ -266,6 +267,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkinData: {fileID: 11400000, guid: 4b7bd132575ae4347af1d6036819534e, type: 2}
+--- !u!114 &516250306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516250300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64661958b9da1f48a7148016ff0b140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &536495792
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,18 +1332,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 847be7cea2f39cc41bdec4f364ab982e, type: 3}
---- !u!114 &2822715533251884519 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2822715531430566287, guid: 847be7cea2f39cc41bdec4f364ab982e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2822715533251884518}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 986488000fa09634baa2f35839b83624, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4765738732622867039
 PrefabInstance:
   m_ObjectHideFlags: 0
