@@ -37,12 +37,6 @@ namespace Assets.Scripts
         public void GoToNextLevel()
         {
             _level++;
-            Debug.Log("NEXT LEVEL!!");
-        }
-
-        public void GoToLevelSelect()
-        {
-            Debug.Log("LEVEL SELECT!!");
         }
 
         public void GoToMainMenu()
