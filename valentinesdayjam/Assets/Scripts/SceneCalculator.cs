@@ -12,9 +12,13 @@ namespace Assets.Scripts
 {
     public class SceneCalculator : MonoBehaviour
     {
+        private const int LAST_LEVEL_INDEX = 4;
+
         public Dictionary<int, string> LevelNumberToName = new Dictionary<int, string>();
         private static SceneCalculator _instance;
         private int _level = -1;
+
+        public bool HasBeatenGame { get; private set; } = false;
 
         private void Awake()
         {
@@ -45,7 +49,15 @@ namespace Assets.Scripts
 
         public void GoToNextLevel()
         {
-            GoToLevelNumber(_level + 1);
+            if (_level == LAST_LEVEL_INDEX)
+            {
+                HasBeatenGame = true;
+                GoToMainMenu();
+            }
+            else
+            {
+                GoToLevelNumber(_level + 1);
+            }
         }
 
         public void GoToLevelNumber(int index)
