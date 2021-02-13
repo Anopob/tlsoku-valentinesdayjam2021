@@ -710,7 +710,6 @@ GameObject:
   - component: {fileID: 1187244649}
   - component: {fileID: 1187244648}
   - component: {fileID: 1187244647}
-  - component: {fileID: 1187244651}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -800,20 +799,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1187244651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187244646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 018b65500cbc98f4592b5cadd664fa0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadingBar: {fileID: 0}
-  LoadingImage: {fileID: 0}
 --- !u!1 &1206590843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,6 +1311,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scene Calculator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044275487899915135, guid: 847be7cea2f39cc41bdec4f364ab982e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 847be7cea2f39cc41bdec4f364ab982e, type: 3}
