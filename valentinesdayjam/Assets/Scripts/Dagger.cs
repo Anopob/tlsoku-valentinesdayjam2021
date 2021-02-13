@@ -22,4 +22,9 @@ public class Dagger : MonoBehaviour
     {
         
     }
+    
+    void OnBecameInvisible()
+    {
+        DestroyObject(gameObject);
+    }
 }
