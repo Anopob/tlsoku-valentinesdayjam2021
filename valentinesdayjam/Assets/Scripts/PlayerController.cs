@@ -129,6 +129,7 @@ public class PlayerController : MonoBehaviour
                     float cringeGravity = cringeMultiplier / (Mathf.Pow(distance,2));
                     Vector2 direction = (transform.position - enemy.bounds.center).normalized * cringeGravity;
                     cringeAcceleration += direction;
+                    
                     /*
                     if (rb.velocity.x > 0)
                         rb.velocity = new Vector2(Math.Max(0, rb.velocity.x + direction.x), rb.velocity.y);
@@ -142,12 +143,16 @@ public class PlayerController : MonoBehaviour
                     */
                     //currentlyCringing.Add(enemy);
                 }
+
             }      
         }
 
+                
+        // Cringing cannot pick you up off the ground
+        if (!jumping)
+            cringeAcceleration = new Vector2(cringeAcceleration.x, 0);  
+
         // Apply acceleration to velocity
-        
-        
         velocity = velocity + horizontalAcceleration + frictionAcceleration + gravityAcceleration + cringeAcceleration;
         
         // Cap X and Y to prevent phasing through walls
