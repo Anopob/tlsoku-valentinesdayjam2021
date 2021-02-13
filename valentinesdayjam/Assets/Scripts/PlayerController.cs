@@ -108,8 +108,8 @@ public class PlayerController : MonoBehaviour
         Vector2 frictionAcceleration = new Vector2(frictionToApply, 0);
         
         // Gravity Acceleration
-        Vector2 gravityAcceleration = new Vector2(0, -0.2f);
-       
+        Vector2 gravityAcceleration = new Vector2(0, (jumping ? -0.2f : 0));	
+        
         // Cringe Acceleration
         Vector2 cringeAcceleration = new Vector2(0,0);
 
@@ -167,6 +167,9 @@ public class PlayerController : MonoBehaviour
         velocity = new Vector2(cappedX, cappedY);
 
         //Debug.Log("velocity " + velocity.x + " friction " + frictionToApply);
+
+        if (!jumping)	
+            cappedY = 0;
 
         // Failsafe for falling off the bottom of the screen
         if (transform.position.y < -12)
