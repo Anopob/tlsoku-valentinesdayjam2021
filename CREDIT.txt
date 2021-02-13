@@ -5,3 +5,5 @@ Spikes and player sprites from https://finalbossblues.itch.io/pixel-platformer-p
 Anokolisa for dungeon tiles https://bakudas.itch.io/generic-dungeon-pack
 
 "Mystical theme" Alexandr Zhelanov, https://soundcloud.com/alexandr-zhelanov
+
+Kenney.nl for gear
