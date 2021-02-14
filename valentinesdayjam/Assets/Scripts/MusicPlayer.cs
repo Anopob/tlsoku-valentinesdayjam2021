@@ -49,20 +49,17 @@ public class MusicPlayer : MonoBehaviour
 
     public void PlayJumpSound()
     {
-        _soundSource.clip = _jumpSound;
-        _soundSource.Play();
+        _soundSource.PlayOneShot(_jumpSound);
     }
 
     public void PlayDeathSound()
     {
-        _soundSource.clip = _deathSound;
-        _soundSource.Play();
+        _soundSource.PlayOneShot(_deathSound);
     }
 
     public void PlayVictorySound()
     {
-        _soundSource.clip = _victorySound;
-        _soundSource.Play();
+        _soundSource.PlayOneShot(_victorySound);
     }
 
     public void PlayButtonClickClip()
