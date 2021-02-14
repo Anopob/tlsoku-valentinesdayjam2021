@@ -11,6 +11,7 @@ public class PostGameScreen : MonoBehaviour
     void Start()
     {
         _sceneCalculator = FindObjectOfType<SceneCalculator>();
+        _sceneCalculator.JustBeatLevel();
     }
 
     public void GoToNextLevel()

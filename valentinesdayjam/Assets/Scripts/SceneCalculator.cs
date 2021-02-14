@@ -52,17 +52,15 @@ namespace Assets.Scripts
             GoToLevelNumber(0);
         }
 
-        public void GoToNextLevel()
+        public void JustBeatLevel()
         {
             if (_level == LAST_LEVEL_INDEX)
-            {
                 HasBeatenGame = true;
-                GoToMainMenu();
-            }
-            else
-            {
-                GoToLevelNumber(_level + 1);
-            }
+        }
+
+        public void GoToNextLevel()
+        {
+            GoToLevelNumber(_level + 1);
         }
 
         public void GoToLevelNumber(int index)
@@ -74,7 +72,7 @@ namespace Assets.Scripts
             }
             else
             {
-                Debug.Log("HEY NO LEVEL : " + index + ", Returning to MainMenu");
+                Debug.Log("HEY NO LEVEL : " + index);
             }
         }
 
