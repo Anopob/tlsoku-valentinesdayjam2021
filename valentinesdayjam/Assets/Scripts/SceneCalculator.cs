@@ -12,7 +12,7 @@ namespace Assets.Scripts
 {
     public class SceneCalculator : MonoBehaviour
     {
-        private const int LAST_LEVEL_INDEX = 4;
+        private const int LAST_LEVEL_INDEX = 9;
 
         public Dictionary<int, string> LevelNumberToName = new Dictionary<int, string>();
         private static SceneCalculator _instance;
@@ -36,10 +36,15 @@ namespace Assets.Scripts
         private void Start()
         {
             LevelNumberToName.Add(0, "Tutorial");
-            LevelNumberToName.Add(1, "neillevel2");
-            LevelNumberToName.Add(2, "Level1");
-            LevelNumberToName.Add(3, "neillevel1");
-            LevelNumberToName.Add(4, "neillevel3");
+            LevelNumberToName.Add(1, "Level1");
+            LevelNumberToName.Add(2, "Level2");
+            LevelNumberToName.Add(3, "Level3");
+            LevelNumberToName.Add(4, "Level4");
+            LevelNumberToName.Add(5, "Level5");
+            LevelNumberToName.Add(6, "Level6");
+            LevelNumberToName.Add(7, "Level7");
+            LevelNumberToName.Add(8, "Level8");
+            LevelNumberToName.Add(9, "Level9");
         }
 
         public void StartNewGame()
