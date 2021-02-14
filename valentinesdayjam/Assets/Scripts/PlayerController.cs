@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     public float cringeMultiplier;
     public float characterFriction;
 
+    public AudioClip jumpSound;
+    public AudioClip deathSound;
+
     private bool facingLeft;
     private bool jumping;
     private List<Collider2D> currentlyCringing = new List<Collider2D>();
@@ -24,12 +27,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sp;
     private BoxCollider2D playerCollider;
+    private AudioSource audio;
+    
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sp = GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
         playerCollider = Array.Find(GetComponents<BoxCollider2D>(), b => !b.isTrigger);
         startingPosition = transform.position;
         Restart();
@@ -50,8 +56,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && !jumping)
         {
             PerformJumpingAnimations();
-            Debug.Log("jumped");
-            //rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            audio.PlayOneShot(jumpSound);
             velocity = new Vector2(velocity.x, jumpSpeed);
         }
 
@@ -228,6 +233,7 @@ public class PlayerController : MonoBehaviour
     
     void KillPlayer(){
         Debug.Log("Player is dead!");
+        audio.PlayOneShot(deathSound);
         // Play audio/visual effect
         Restart();
     }
