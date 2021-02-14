@@ -22,6 +22,7 @@ public class EndOfLevel : MonoBehaviour
         {
             if (collision.CompareTag("Player"))
             {
+                collision.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
                 audio.Play();
                 _canvas.gameObject.SetActive(true);
                 _hasEnded = true;
