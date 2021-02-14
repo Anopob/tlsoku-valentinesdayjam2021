@@ -27,6 +27,11 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
+    public void SetMusicVolume(float volume)
+    {
+        _musicSource.volume = volume;
+    }
+
     public void PlayMainMenuMusic()
     {
         PlayMusicIfNotAlready(_mainMenuTheme);
