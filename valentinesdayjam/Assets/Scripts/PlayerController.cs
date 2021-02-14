@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 
 using UnityEngine;
+using Assets.Scripts;
 
 public class PlayerController : MonoBehaviour
 {
@@ -47,10 +48,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            FindObjectOfType<SceneCalculator>().GoToMainMenu();
+        }
+
         if (Input.GetButtonDown("Jump") && !jumping)
         {
             PerformJumpingAnimations();
-            Debug.Log("jumped");
             //rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             velocity = new Vector2(velocity.x, jumpSpeed);
         }
