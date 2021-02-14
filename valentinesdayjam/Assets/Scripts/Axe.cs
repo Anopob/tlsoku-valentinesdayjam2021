@@ -23,7 +23,6 @@ public class Axe : MonoBehaviour
         trans = GetComponent<Transform>();
         startAngle = trans.rotation.eulerAngles.z;
         endAngle = startAngle + rotationArc;
-        Debug.Log("Start Angle: " + startAngle + "End Angle: " + endAngle);
         
         totalRotations = (int)(rotationArc / rotationSpeed); 
     }

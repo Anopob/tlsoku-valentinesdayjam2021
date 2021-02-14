@@ -15,7 +15,6 @@ public class Launcher : MonoBehaviour
     void Start()
     {
         framesDelay = (int)(60 * shotDelay);
-        Debug.Log("Required delay " + framesDelay);
     }
 
     // Update is called once per frame
@@ -27,7 +26,6 @@ public class Launcher : MonoBehaviour
            sinceLastShot = 0;
         }
         sinceLastShot++;
-        Debug.Log("Current shot delay " + framesDelay);
     }
     
     void Shoot()

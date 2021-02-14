@@ -238,7 +238,6 @@ public class PlayerController : MonoBehaviour
     }
     
     void KillPlayer(){
-        Debug.Log("Player is dead!");
         audioSource.PlayOneShot(deathSound);
         // Play audio/visual effect
         Restart();
