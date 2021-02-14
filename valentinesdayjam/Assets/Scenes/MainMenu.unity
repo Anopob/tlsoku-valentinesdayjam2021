@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.34901962}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3253,10 +3253,10 @@ MonoBehaviour:
 
 
 
-    Axe and dagger
+    Axe, dagger
+    and launcher
 
-    Quintino
-    Pixels
+    Quintino Pixels
 
 
 
@@ -3269,12 +3269,12 @@ MonoBehaviour:
 
 
 
-    --- Music ---
+    ---
+    Music ---
 
 
 
-    Mystical
-    Theme (Title theme)
+    Mystical Theme (Title theme)
 
     Alexandr Zhelanov (https://soundcloud.com/alexandr-zhelanov)
 
@@ -3283,6 +3283,7 @@ MonoBehaviour:
 
 
     -----
+
 
 
     Made
@@ -3357,12 +3358,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 435166830}
-    characterCount: 417
+    characterCount: 428
     spriteCount: 0
-    spaceCount: 72
-    wordCount: 55
+    spaceCount: 74
+    wordCount: 56
     linkCount: 0
-    lineCount: 47
+    lineCount: 48
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -3654,7 +3655,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 620923350}
+  m_Father: {fileID: 1448116392}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -10819,14 +10820,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590786164}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 133109772}
   - {fileID: 737900612}
   m_Father: {fileID: 620923350}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10899,9 +10900,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 536495793}
-  - {fileID: 1183802134}
-  - {fileID: 1856893003}
+  - {fileID: 1448116392}
   - {fileID: 590786165}
   m_Father: {fileID: 1187244650}
   m_RootOrder: 0
@@ -11152,7 +11151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _creditsPanel: {fileID: 590786164}
-  _mainPanel: {fileID: 1183802133}
+  _mainPanel: {fileID: 1448116391}
 --- !u!1 &797637308
 GameObject:
   m_ObjectHideFlags: 0
@@ -11616,7 +11615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _creditsPanel: {fileID: 590786164}
-  _mainPanel: {fileID: 1183802133}
+  _mainPanel: {fileID: 1448116391}
 --- !u!1 &1154328593
 GameObject:
   m_ObjectHideFlags: 0
@@ -11763,7 +11762,7 @@ RectTransform:
   - {fileID: 540161207}
   - {fileID: 1095733563}
   - {fileID: 1992963708}
-  m_Father: {fileID: 620923350}
+  m_Father: {fileID: 1448116392}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -12258,6 +12257,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4881939703fb6b49ad26647927cc23e, type: 3}
+--- !u!1 &1448116391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1448116392}
+  m_Layer: 5
+  m_Name: Noncredits
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1448116392
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448116391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 536495793}
+  - {fileID: 1183802134}
+  - {fileID: 1856893003}
+  m_Father: {fileID: 620923350}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1645401974
 GameObject:
   m_ObjectHideFlags: 0
@@ -12493,7 +12530,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 620923350}
+  m_Father: {fileID: 1448116392}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
