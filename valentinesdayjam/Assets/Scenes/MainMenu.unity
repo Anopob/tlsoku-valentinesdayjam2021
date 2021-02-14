@@ -3780,7 +3780,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Title of Game
+  m_Text: Cringe Castle
 --- !u!222 &536495795
 CanvasRenderer:
   m_ObjectHideFlags: 0
