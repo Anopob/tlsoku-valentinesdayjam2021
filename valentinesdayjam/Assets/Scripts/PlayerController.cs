@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sp;
     private BoxCollider2D playerCollider;
-    private AudioSource audioSource;
+    private MusicPlayer _musicPlayer;
     
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sp = GetComponent<SpriteRenderer>();
-        audioSource = GetComponent<AudioSource>();
+        _musicPlayer = FindObjectOfType<MusicPlayer>();
         playerCollider = Array.Find(GetComponents<BoxCollider2D>(), b => !b.isTrigger);
         startingPosition = transform.position;
         Restart();
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && !jumping)
         {
             PerformJumpingAnimations();
-            audioSource.PlayOneShot(jumpSound);
+            _musicPlayer.PlayJumpSound();
             velocity = new Vector2(velocity.x, jumpSpeed);
         }
 
@@ -240,7 +240,7 @@ public class PlayerController : MonoBehaviour
     }
     
     void KillPlayer(){
-        audioSource.PlayOneShot(deathSound);
+        _musicPlayer.PlayDeathSound();
         // Play audio/visual effect
         Restart();
     }
