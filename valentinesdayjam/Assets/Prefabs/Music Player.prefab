@@ -143,7 +143,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainMenuTheme: {fileID: 8300000, guid: d062645945ad0594aad2c0ab055201dd, type: 3}
   _gameplayTheme: {fileID: 0}
-  ButtonClickClip: {fileID: 0}
+  _buttonClickClip: {fileID: 0}
+  _jumpSound: {fileID: 8300000, guid: 540cec9750e28cc489cf8afdb59ce10e, type: 3}
+  _deathSound: {fileID: 8300000, guid: 1c8db97e976c26b46bc8ecaba4c3ec26, type: 3}
+  _victorySound: {fileID: 8300000, guid: f0c42c1df3e8a68408e3987480d9c173, type: 3}
 --- !u!82 &4765738733742506429
 AudioSource:
   m_ObjectHideFlags: 0

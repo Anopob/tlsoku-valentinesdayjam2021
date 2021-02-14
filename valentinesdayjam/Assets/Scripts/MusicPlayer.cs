@@ -5,7 +5,7 @@ using UnityEngine;
 public class MusicPlayer : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip _mainMenuTheme, _gameplayTheme, _buttonClickClip;
+    private AudioClip _mainMenuTheme, _gameplayTheme, _buttonClickClip, _jumpSound, _deathSound, _victorySound;
     private static MusicPlayer _instance;
     private static AudioSource _musicSource;
     private static AudioSource _soundSource;
@@ -32,6 +32,11 @@ public class MusicPlayer : MonoBehaviour
         _musicSource.volume = volume;
     }
 
+    public void SetSoundVolume(float volume)
+    {
+        _soundSource.volume = volume;
+    }
+
     public void PlayMainMenuMusic()
     {
         PlayMusicIfNotAlready(_mainMenuTheme);
@@ -40,6 +45,24 @@ public class MusicPlayer : MonoBehaviour
     public void PlayGameplayMusic()
     {
         PlayMusicIfNotAlready(_gameplayTheme);
+    }
+
+    public void PlayJumpSound()
+    {
+        _soundSource.clip = _jumpSound;
+        _soundSource.Play();
+    }
+
+    public void PlayDeathSound()
+    {
+        _soundSource.clip = _deathSound;
+        _soundSource.Play();
+    }
+
+    public void PlayVictorySound()
+    {
+        _soundSource.clip = _victorySound;
+        _soundSource.Play();
     }
 
     public void PlayButtonClickClip()
