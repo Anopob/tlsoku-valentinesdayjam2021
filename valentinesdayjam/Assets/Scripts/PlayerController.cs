@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
         {
             FindObjectOfType<SceneCalculator>().GoToMainMenu();
         }
+        else if (Input.GetKeyDown(KeyCode.K))
+            KillPlayer();
 
         if (Input.GetButtonDown("Jump") && !jumping)
         {
