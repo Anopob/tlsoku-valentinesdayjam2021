@@ -13,6 +13,9 @@ namespace Assets.Scripts
     public class SceneCalculator : MonoBehaviour
     {
         private const int LAST_LEVEL_INDEX = 9;
+        
+        [SerializeField]
+        private MusicPlayer musicPlayer;
 
         public Dictionary<int, string> LevelNumberToName = new Dictionary<int, string>();
         private static SceneCalculator _instance;
@@ -69,6 +72,7 @@ namespace Assets.Scripts
             {
                 _level = index;
                 ClickAsync(LevelNumberToName[index]);
+                musicPlayer.PlayGameplayMusic();
             }
             else
             {

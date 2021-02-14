@@ -11920,6 +11920,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 892442761}
   m_CullTransparentMesh: 0
+--- !u!114 &942729812 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4765738733742506428, guid: 1c2ea1ed2f30e68499f1ea23c26ab4f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 4765738732622867039}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e472c02d50ab093489c8e1ecde18806a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &995449365
 GameObject:
   m_ObjectHideFlags: 0
@@ -14117,6 +14129,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Calculator
       objectReference: {fileID: 0}
+    - target: {fileID: 2822715531430566287, guid: 847be7cea2f39cc41bdec4f364ab982e,
+        type: 3}
+      propertyPath: musicPlayer
+      value: 
+      objectReference: {fileID: 942729812}
     - target: {fileID: 6044275487899915135, guid: 847be7cea2f39cc41bdec4f364ab982e,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -14186,6 +14203,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4765738733742506428, guid: 1c2ea1ed2f30e68499f1ea23c26ab4f2,
+        type: 3}
+      propertyPath: _gameplayTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: d56522a184257444e9b4dc03f115a2da, type: 3}
     - target: {fileID: 4765738733742506430, guid: 1c2ea1ed2f30e68499f1ea23c26ab4f2,
         type: 3}
       propertyPath: m_Name
