@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sp;
     private BoxCollider2D playerCollider;
-    private AudioSource audio;
+    private AudioSource audioSource;
     
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sp = GetComponent<SpriteRenderer>();
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         playerCollider = Array.Find(GetComponents<BoxCollider2D>(), b => !b.isTrigger);
         startingPosition = transform.position;
         Restart();
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && !jumping)
         {
             PerformJumpingAnimations();
-            audio.PlayOneShot(jumpSound);
+            audioSource.PlayOneShot(jumpSound);
             velocity = new Vector2(velocity.x, jumpSpeed);
         }
 
@@ -239,7 +239,7 @@ public class PlayerController : MonoBehaviour
     
     void KillPlayer(){
         Debug.Log("Player is dead!");
-        audio.PlayOneShot(deathSound);
+        audioSource.PlayOneShot(deathSound);
         // Play audio/visual effect
         Restart();
     }

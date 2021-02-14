@@ -7,13 +7,13 @@ public class EndOfLevel : MonoBehaviour
     [SerializeField]
     private Canvas _canvas;
 
-    private AudioSource audio;
+    private AudioSource audioSource;
 
     private bool _hasEnded = false;
 
     void Start()
     {
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,7 +23,7 @@ public class EndOfLevel : MonoBehaviour
             if (collision.CompareTag("Player"))
             {
                 collision.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-                audio.Play();
+                audioSource.Play();
                 _canvas.gameObject.SetActive(true);
                 _hasEnded = true;
             }

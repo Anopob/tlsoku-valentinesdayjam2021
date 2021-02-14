@@ -11,7 +11,6 @@ public class Dagger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Made a dagger! " + angle);
         GetComponent<Transform>().rotation = Quaternion.Euler(0.0f, 0.0f,  angle + 90.0f);
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle  *  Mathf.Deg2Rad)) * speed;
@@ -25,6 +24,6 @@ public class Dagger : MonoBehaviour
     
     void OnBecameInvisible()
     {
-        DestroyObject(gameObject);
+        Destroy(gameObject);
     }
 }
